@@ -14,8 +14,9 @@ public class Lc340longsubatmostk {
         int low = 0, maxlen = 0;
 
         for (int high = 0; high < n; high++) {
-            char ch=s.charAt(high);
+            char ch = s.charAt(high);
 
+            
             hm.put(ch, hm.getOrDefault(ch, 0) + 1);
 
             while (hm.size() > k) {
