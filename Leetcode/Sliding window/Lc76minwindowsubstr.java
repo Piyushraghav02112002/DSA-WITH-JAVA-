@@ -49,8 +49,7 @@ public class Lc76minwindowsubstr {
                 low++;
 
             }
-            
-            
+        
         }
         return minlen == Integer.MAX_VALUE ? "" : str;
 
