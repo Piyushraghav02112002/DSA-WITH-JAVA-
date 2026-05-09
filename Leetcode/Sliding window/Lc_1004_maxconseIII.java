@@ -33,20 +33,18 @@ public class Lc_1004_maxconseIII {
                 if(nums[high]==0)
                     zeros++;
 
-                if (zeros <= k) {
-                    int curren = high - low + 1;
-                    maxlen = Math.max(curren, maxlen);
-                }
+                // if (zeros <= k) {
+                //     int curren = high - low + 1;
+                //     maxlen = Math.max(curren, maxlen);
+                // }
 
-                while (zeros >k) {
-                    if (nums[low] != 0) {
-                        low++;
-                    }
-                    else {
+                while (zeros > k) {
+                    if (nums[low] == 0)
                         zeros--;
-                    }
+                    low++;
                 }
-        }
+                maxlen = Math.max(maxlen, high - low + 1);
+            }
         return maxlen;
 
     }
