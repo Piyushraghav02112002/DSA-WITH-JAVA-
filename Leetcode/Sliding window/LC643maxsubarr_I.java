@@ -1,10 +1,12 @@
+import java.util.HashMap;
+
 public class LC643maxsubarr_I {
     
     public static double findMaxAverage(int[] nums, int k) {
         int n = nums.length;
 
         double maxavg = Integer.MIN_VALUE;
-
+        
         for (int i = 0; i < n-k; i++) {
             int sum = 0;
             for (int j = i; (j - i + 1) <= k; j++) {     //Brute force
