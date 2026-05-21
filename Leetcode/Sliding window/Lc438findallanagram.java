@@ -75,9 +75,10 @@ public class Lc438findallanagram {
                 low++;
             }
             
-            if (count==need.size()) {
+            if (count == need.size()) {
                 l.add(low);
             }
+            
             
         }
         return l;
