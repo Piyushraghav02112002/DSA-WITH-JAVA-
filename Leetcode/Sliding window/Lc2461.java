@@ -1,30 +1,35 @@
+import java.util.HashMap;
+
 public class Lc2461 {
     
     
     public static long maximumSubarraySum(int[] nums, int k) {
+        
         int n = nums.length;
+        HashMap<Integer, Integer> frq = new HashMap<>();
 
-        Long maxsum = (long) Integer.MIN_VALUE;
-        int currsum=0;
+        int currsum = 0, low = 0;
+        Long ans = (long) Integer.MIN_VALUE;
+        for (int high = 0; high < n; high++) {
+            int right=nums[high];
 
-        for (int i = 0; i < k; i++) {
-            currsum += nums[i];
-        }
-        maxsum = (long) currsum;
+            frq.put(right, frq.getOrDefault(right, 0) + 1);
+            currsum += right;
 
-        int low=0;
-        for (int high = k; high < n; high++) {
+            if (high >= k) {
+                currsum -= nums[high - k];
+                frq.put(nums[high - k], frq.get(nums[high - k]) - 1);
+                if (frq.get(nums[nums[high - k]]) == 0) {
+                    frq.remove(nums[high - k]);
+                }
+            }
             
-            currsum -= nums[low];
-            low++;
-            if (nums[high] != nums[high -1]) {
-                currsum += nums[high];
-                maxsum = Math.max(maxsum, currsum);
-            } else {
-                break;
+            if (frq.size() == k) {
+                ans = Math.max(ans, currsum);
             }
         }
-        return maxsum;
+        
+        return ans;
     }
     public static void main(String[] args) {
         int nums[] = {1,5,4,2,9,9,9};

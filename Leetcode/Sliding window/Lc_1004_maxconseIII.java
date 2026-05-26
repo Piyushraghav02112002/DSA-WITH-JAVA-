@@ -23,30 +23,45 @@ public class Lc_1004_maxconseIII {
         // }
         // return maxlen;
 
-          int maxlen = 0;
+        //   int maxlen = 0;
 
-        int low = 0, zeros = 0;
+        // int low = 0, zeros = 0;
         
         
-        for (int high = low; high < n; high++) {
+        // for (int high = low; high < n; high++) {
 
-                if(nums[high]==0)
-                    zeros++;
+        //         if(nums[high]==0)
+        //             zeros++;
 
-                // if (zeros <= k) {
-                //     int curren = high - low + 1;
-                //     maxlen = Math.max(curren, maxlen);
-                // }
+        //         // if (zeros <= k) {
+        //         //     int curren = high - low + 1;
+        //         //     maxlen = Math.max(curren, maxlen);
+        //         // }
 
-                while (zeros > k) {
-                    if (nums[low] == 0)
-                        zeros--;
-                    low++;
+        //         while (zeros > k) {
+        //             if (nums[low] == 0)
+        //                 zeros--;
+        //             low++;
+        //         }
+        //         maxlen = Math.max(maxlen, high - low + 1);
+        //     }
+        // return maxlen;
+
+        int zeros = 0, low = 0, maxlen = Integer.MIN_VALUE;
+        
+        for (int high = 0; high < nums.length; high++) {
+            if (nums[high] == 0)
+                zeros++;
+
+            while (zeros > k) {
+                if (nums[low] == 0) {
+                    zeros--;
                 }
-                maxlen = Math.max(maxlen, high - low + 1);
+                low++;
             }
+            maxlen = Math.max(maxlen, high - low + 1);
+        }
         return maxlen;
-
     }
     
     
