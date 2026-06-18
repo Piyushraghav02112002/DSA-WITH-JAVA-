@@ -70,11 +70,7 @@ public class sizemaxheight {
         if (root == null)
             return Integer.MAX_VALUE;
 
-        int a = root.val;
-        int b = findmin(root.left);
-        int c = findmin(root.right);
-
-        return Math.min(a, Math.min(b, c));
+        return Math.min(root.val, Math.min(findmin(root.left), findmin(root.right)));
 
     }
 

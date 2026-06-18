@@ -38,7 +38,17 @@ public class preinpost {
         postorder(root.right);
         System.out.print(root.val + " ");
     }
-    
+
+    public static void Nthlevel(Node root,int n){
+    if(root==null)return ;
+
+    if(n==1) System.out.print(root.val+" ");
+
+    Nthlevel(root.left,n-1);
+    Nthlevel(root.right,n-1);
+
+    }
+
     public static void main(String[] args) {
         
         Node a = new Node(1);
@@ -61,15 +71,15 @@ public class preinpost {
         Node g = new Node(6);
         c.left = g;
 
-        System.out.println();
-        preorder(a);
-       
-        System.out.println();
-        Inorder(a);
-       
-        System.out.println();
-        postorder(a);
-       
+//        System.out.println();
+//        preorder(a);
+//
+//        System.out.println();
+//        Inorder(a);
+//
+//        System.out.println();
+//        postorder(a);
+       Nthlevel(a,3);
 
 
     }
