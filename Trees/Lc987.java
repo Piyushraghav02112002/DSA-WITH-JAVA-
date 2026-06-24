@@ -1,3 +1,4 @@
+import javax.imageio.stream.ImageInputStream;
 import java.util.*;
 
 public class Lc987 {
@@ -22,30 +23,35 @@ public class Lc987 {
     }
 
     public List<List<Integer>> verticalTraversal(Node root) {
-        Queue<pair> q=new ArrayDeque<>();
-        Map<Integer, ArrayList<Integer>> hm=new TreeMap<>();
+        Queue<pair> q = new ArrayDeque<>();
+        Map<Integer, ArrayList<Integer>> hm = new TreeMap<>();
 
-        q.add(new pair(0,root));
+        q.add(new pair(0, root));
 
-        while(!q.isEmpty()){
-            pair curr=q.poll();
+        while (!q.isEmpty()) {
+            pair curr = q.poll();
 
-            if(hm.containsKey(curr.hd)){
+            if (hm.containsKey(curr.hd)) {
                 hm.get(curr.hd).add(curr.node.val);
-            }
-            else{
-                ArrayList<Integer> arr=new ArrayList<>();
+            } else {
+                ArrayList<Integer> arr = new ArrayList<>();
                 arr.add(curr.node.val);
-                hm.put(curr.hd,arr);
+                hm.put(curr.hd, arr);
             }
-            if(curr.node.left!=null)q.add(new pair(curr.hd-1,curr.node.left));
-            if(curr.node.right!=null)q.add(new pair(curr.hd+1,curr.node.right));
+            if (curr.node.left != null) q.add(new pair(curr.hd - 1, curr.node.left));
+            if (curr.node.right != null) q.add(new pair(curr.hd + 1, curr.node.right));
 
         }
-            ArrayList<Integer> ans=new ArrayList<>();
-            for(Map.Entry<Integer, ArrayList<Integer>> entryset: hm.entrySet()){
-                ans.addAll(entryset.getValue());
+        ArrayList<Integer> ans = new ArrayList<>();
+        for (Map.Entry<Integer, ArrayList<Integer>> entryset : hm.entrySet()) {
+            ans.addAll(entryset.getValue());
             return ans;
+
+        }
+        return ans;
+    }
+
+    static void main() {
 
     }
 }
