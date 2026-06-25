@@ -3,7 +3,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.TreeMap;
 
-public class Topview {
+public class Allviews {
     public static class Node {
         int val;
         Node left;
@@ -45,10 +45,35 @@ public class Topview {
             if(curr.curr.right!=null)q.add(new pair(curr.curr.right,currhd+1));
         }
 
-        for(Map.Entry<Integer,Integer> entryset=hm.entrySet()){
-            System.out.println(entryset.getValue());
+        for(Map.Entry<Integer,Integer> entry : hm.entrySet()){
+            System.out.print(entry.getValue()+"->");
         }
     }
+
+    public static void printbfsbottomview(Node root){
+
+        Queue<pair> q=new LinkedList<>();
+        Map<Integer,Integer> hm=new TreeMap();
+
+        if(root == null) return;
+
+        q.add(new pair(root,0));
+
+        while(q.size()>0){
+            int currhd=q.peek().hd;
+            pair curr=q.poll();
+
+            hm.put(currhd,curr.curr.val);
+
+            if(curr.curr.left!=null)q.add(new pair(curr.curr.left,currhd-1));
+            if(curr.curr.right!=null)q.add(new pair(curr.curr.right,currhd+1));
+        }
+
+        for(Map.Entry<Integer,Integer> entry : hm.entrySet()){
+            System.out.print(entry.getValue()+"->");
+        }
+    }
+
 
     static void main() {
         Node a = new Node(1);
@@ -58,12 +83,25 @@ public class Topview {
         a.left = b;
         a.right = c;
 
-        Node d = new Node(4);
-        Node e = new Node(5);
+        Node d = new Node(6);
+        Node e = new Node(7);
+        Node f = new Node(4);
+        Node g = new Node(5);
+        Node h = new Node(8);
+        Node i = new Node(9);
+
 
         c.left = d;
         c.right = e;
+        b.left = f;
+        b.right = g;
+        g.left = h;
+        g.right = i;
+
 
         printbfstopview(a);
+        System.out.println();
+        printbfsbottomview(a);
+
     }
 }
