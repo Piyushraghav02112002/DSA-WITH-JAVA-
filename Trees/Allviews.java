@@ -1,7 +1,4 @@
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Allviews {
     public static class Node {
@@ -74,6 +71,55 @@ public class Allviews {
         }
     }
 
+    public static void printbfsleftview(Node root){
+
+        Queue<pair> q=new LinkedList<>();
+        Map<Integer,Integer> hm=new TreeMap();
+
+        if(root == null) return;
+
+        q.add(new pair(root,0));
+
+        while(q.size()>0){
+            int currhd=q.peek().hd;
+            pair curr=q.poll();
+
+            if(!hm.containsKey(currhd)) {
+                hm.put(currhd, curr.curr.val);
+            }
+            if(curr.curr.left!=null)q.add(new pair(curr.curr.left,currhd+1));
+            if(curr.curr.right!=null)q.add(new pair(curr.curr.right,currhd+1));
+        }
+
+        for(Map.Entry<Integer,Integer> entry : hm.entrySet()){
+            System.out.print(entry.getValue()+"->");
+        }
+    }
+
+    public static void printbfsrightview(Node root){
+
+        Queue<pair> q=new LinkedList<>();
+        Map<Integer,Integer> hm=new TreeMap<>();
+
+
+        if(root == null) return;
+
+        q.add(new pair(root,0));
+
+        while(q.size()>0){
+            int currhd=q.peek().hd;
+            pair curr=q.poll();
+
+            hm.put(currhd,curr.curr.val);
+
+            if(curr.curr.left!=null)q.add(new pair(curr.curr.left,currhd+1));
+            if(curr.curr.right!=null)q.add(new pair(curr.curr.right,currhd+1));
+        }
+
+        for(Map.Entry<Integer,Integer> entry : hm.entrySet()){
+            System.out.print(entry.getValue()+"->");
+              }
+    }
 
     static void main() {
         Node a = new Node(1);
@@ -102,6 +148,9 @@ public class Allviews {
         printbfstopview(a);
         System.out.println();
         printbfsbottomview(a);
-
+        System.out.println();
+        printbfsrightview(a);
+        System.out.println();
+        printbfsleftview(a);
     }
 }
